@@ -1,1 +1,1 @@
-# -AI-asset-diversifier
+# AI-asset-diversifier
