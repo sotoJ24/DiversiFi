@@ -1,7 +1,10 @@
 // api.js - Express.js API for Asset Diversifier
 const express = require('express');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());
+
 
 // Simulate AI Recommendation Endpoint
 app.post('/simulate-ai-recommendation', (req, res) => {
@@ -35,7 +38,7 @@ app.post('/simulate-ai-recommendation', (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
