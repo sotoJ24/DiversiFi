@@ -45,7 +45,13 @@ DiversiFI
    npx hardhat node
    ```
 
-3. Deploy your smart contract:
+3. Set up a local Hardhat network:
+
+ ```bash
+  npx hardhat console --network localhost
+ ```
+
+4. Deploy your smart contract:
 
    ```bash
    cd DiversiFI/backend/smart-contracts
