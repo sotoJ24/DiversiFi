@@ -48,54 +48,47 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8 max-w-4xl flex flex-col items-center justify-center flex-grow text-center">
         {/* Logo and Title */}
         <div className="mb-12">
-          <div className="text-5xl font-bold mb-2 text-[var(--magenta)]">DiversiFi</div>
-          <div className="text-xl text-[var(--dark-gray)] max-w-md mx-auto">
-            AI-powered portfolio diversification for the modern crypto investor
+          <div className="flex flex-col items-center">
+            {/* Pie chart logo */}
+            <div className="w-48 h-48 mb-6">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                <circle cx="50" cy="50" r="40" fill="white" />
+                <path d="M50,10 A40,40 0 0,1 90,50 L50,50 Z" fill="#C93387" /> {/* Magenta */}
+                <path d="M90,50 A40,40 0 0,1 50,90 L50,50 Z" fill="#6AB596" /> {/* Green */}
+                <path d="M50,90 A40,40 0 0,1 10,50 L50,50 Z" fill="#2D3748" /> {/* Navy */}
+                <path d="M10,50 A40,40 0 0,1 50,10 L50,50 Z" fill="#E5E7EB" /> {/* Light Gray */}
+                <circle cx="50" cy="50" r="15" fill="white" /> {/* Inner white circle */}
+              </svg>
+            </div>
+            <div className="text-5xl font-bold mb-2 text-[var(--magenta)]">DiversiFi</div>
+            <div className="text-xl text-[var(--dark-gray)] max-w-md mx-auto">
+              Algorithm-driven asset allocation for your crypto portfolio
+            </div>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="w-full max-w-md bg-[var(--white)] rounded-xl shadow-lg overflow-hidden p-8 mb-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-2 text-[var(--navy)]">Welcome to DiversiFi</h2>
-            <p className="text-[var(--dark-gray)]">
-              Connect your wallet to access AI-driven portfolio optimization
-            </p>
-          </div>
+   
 
           <div className="space-y-4">
-            <div className="flex justify-center">
-              <WalletButton className="w-full" />
-            </div>
-
-            <div className="text-center">
-              <span className="text-[var(--mid-gray)]">or</span>
-            </div>
+            <button 
+              onClick={handleConnectWallet}
+              className="w-full py-3 bg-[var(--magenta)] hover:bg-[var(--magenta-dark)] text-white font-medium rounded-md"
+            >
+              Connect Wallet
+            </button>
 
             <button 
               onClick={handleDemoClick}
-              className="btn-outline"
+              className="w-full py-3 bg-[#27B998] hover:bg-opacity-90 text-white font-medium rounded-md"
             >
-              Try Demo
+              View Demo
             </button>
           </div>
         </div>
 
-        {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
-          <div className="card">
-            <div className="text-[var(--magenta)] text-xl font-semibold mb-2">AI Recommendations</div>
-            <p className="text-[var(--dark-gray)]">Get personalized portfolio optimization recommendations based on market trends.</p>
-          </div>
-          <div className="card">
-            <div className="text-[var(--magenta)] text-xl font-semibold mb-2">Smart Diversification</div>
-            <p className="text-[var(--dark-gray)]">Automatically diversify your assets according to your risk profile.</p>
-          </div>
-          <div className="card">
-            <div className="text-[var(--magenta)] text-xl font-semibold mb-2">Real-time Analytics</div>
-            <p className="text-[var(--dark-gray)]">Track your portfolio performance with real-time analytics and insights.</p>
-          </div>
-        </div>
+
       </div>
 
       <footer className="w-full py-4 bg-[var(--white)] border-t border-[var(--light-gray)]">
