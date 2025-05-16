@@ -92,6 +92,9 @@ DiversiFI
 ## Frontend demo version
 https://claude.ai/public/artifacts/c58165ad-1910-4154-bba8-4cb26c79367b
 
+![Screenshot from 2025-05-15 22-26-45](https://github.com/user-attachments/assets/5731dd6a-5b8b-44bf-b121-88e57814c71f)
+
+
 ---
 
 ## Future Improvements
