@@ -84,8 +84,12 @@ DiversiFI
 
 ## Usage with Postman
 
-* Use the `/simulate-ai-recommendation` endpoint to simulate AI-generated diversification.
-* Use the `/diversify` endpoint to directly interact with the smart contract.
+* Use the `/deposit` endpoint to directly interact with the smart contract and deposit the amount.
+* Use the `/diversify` endpoint to diversify their funds among multiple tokens.
+* Use the `/getBalance` endpoint to returns the user’s current balance.
+![Screenshot from 2025-05-15 14-01-53](https://github.com/user-attachments/assets/9e3547fe-0bdf-4daf-a94e-f0eef1f1a82e)
+
+
 
 ---
 
