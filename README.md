@@ -89,6 +89,11 @@ DiversiFI
 
 ---
 
+## Frontend demo version
+https://claude.ai/public/artifacts/c58165ad-1910-4154-bba8-4cb26c79367b
+
+---
+
 ## Future Improvements
 
 * Add a complete frontend for user interaction.
