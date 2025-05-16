@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiversiFi | Wallet with AI Agent</title>
+    <style>
+        /* General styles */
+        :root {
+            --magenta: #e91e96;
+            --green: #25b8a0;
+            --dark-blue: #1d3344;
+            --light-gray: #e6e6e6;
+            --white: #ffffff;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo { /* Logo del Header */
+            height: 200px; /* Tamaño ajustado para el logo principal */
+            width: auto; /* Para mantener la proporción */
+            object-fit: contain;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--magenta);
+        }
+        
+        .cta-button {
+            background-color: var(--magenta);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #c71a7e;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--magenta), var(--green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--dark-blue);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .crypto-icon {
+            color: var(--magenta);
+        }
+        
+        .staking-icon {
+            color: var(--green);
+        }
+        
+        .pools-icon {
+            color: var(--dark-blue);
+        }
+        
+        .lending-icon {
+            color: var(--dark-gray);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        /* AI Agent Section */
+        .ai-agent {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .ai-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .ai-text {
+            flex: 1;
+        }
+        
+        .ai-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+        
+        /* Estilo específico para el botón CTA dentro de la sección AI Agent */
+        .ai-text .cta-button {
+            margin-top: 20px; /* Añade espacio arriba del botón */
+        }
+        
+        .ai-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .ai-image img { /* Imagen del Agente AI */
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Farcaster Section */
+        .farcaster {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .farcaster-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .farcaster-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+        
+        .farcaster-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+        
+        .farcaster-text p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(45deg, var(--dark-blue), var(--magenta));
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button-large {
+            background-color: var(--white);
+            color: var(--magenta);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button-large:hover {
+            background-color: var(--light-gray);
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo { /* Logo del Footer - AUMENTADO */
+            height: 70px; /* Aumentado de 50px a 70px */
+            width: auto;   
+            max-width: 250px; /* Ajustado ligeramente por si el aumento de altura lo requiere */
+            object-fit: contain; 
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--magenta);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social a {
+            color: var(--white);
+            font-size: 20px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animated {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        /* Media queries */
+        @media (max-width: 1024px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .ai-content {
+                flex-direction: column-reverse; /* Mantiene la imagen arriba del texto en móviles */
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            
+            .header-content { 
+                justify-content: space-between; 
+            }
+
+            .logo { 
+                height: 120px; /* Ajuste del logo del header para móviles */
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+             .ai-content { /* Asegura que en móviles la imagen y el texto se apilen correctamente */
+                flex-direction: column-reverse; /* Imagen arriba, texto abajo */
+            }
+            .ai-image {
+                margin-bottom: 20px; /* Espacio entre la imagen y el texto en móviles */
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="Logo.jpg" alt="DiversiFi Logo" class="logo">
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#ai-agent">AI Agent</a>
+                <a href="#farcaster">Farcaster</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="cta-button">Join Waitlist</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text animated">
+                <h1>Diversify Your Savings Intelligently</h1>
+                <p>DiversiFi is a wallet with personal budgeting and an AI agent that advises you on how to diversify your money between cryptocurrencies, staking, pools, and lending.</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+            <div class="hero-image animated">
+                <img src="Imagen mini app.png" alt="DiversiFi App Screenshot">
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Intelligent Diversification</h2>
+            <div class="features-grid">
+                <div class="feature-card animated">
+                    <div class="feature-icon crypto-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Top Cryptocurrencies</h3>
+                    <p>Invest in leading market cryptocurrencies based on personalized recommendations from our AI agent.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon staking-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Uniswap/Base Staking</h3>
+                    <p>Generate passive yields through staking on trusted platforms like Uniswap or Base.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon pools-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Pools Integration</h3>
+                    <p>Access liquidity pools with Hooks on Base using Foundry to maximize your returns.</p>
+                </div>
+                <div class="feature-card animated">
+                    <div class="feature-icon lending-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Lending</h3>
+                    <p>Generate income by safely lending your money on recommended DeFi platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-agent" id="ai-agent">
+        <div class="container ai-content">
+            <div class="ai-image animated">
+                <img src="AI Agent Interface.png" alt="AI Agent Interface">
+            </div>
+            <div class="ai-text animated">
+                <h2>Personalized AI Advisory</h2>
+                <p>Our artificial intelligence agent constantly analyzes the market and your financial profile to offer you the best diversification recommendations.</p>
+                <p>The agent learns from your preferences and automatically adjusts the percentages between different investment options to maximize your benefits while maintaining your preferred risk level.</p>
+                <button class="cta-button">Discover How It Works</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="farcaster" id="farcaster">
+        <div class="container farcaster-content">
+            <img src="farcaster_ (1).png" alt="Farcaster Logo" class="farcaster-logo">
+            <div class="farcaster-text animated">
+                <h2>Mini App on Farcaster</h2>
+                <p>DiversiFi is available as a mini application in the Farcaster ecosystem, allowing you to access all its features directly from your favorite Farcaster client.</p>
+                <p>Connect with other users, share investment strategies, and stay up to date with the latest crypto market trends, all within a vibrant and dynamic community.</p>
+                <button class="cta-button">Try the Mini App</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Start Diversifying Today</h2>
+            <p>Join our waitlist and be among the first to try DiversiFi when we launch.</p>
+            <button class="cta-button-large">Register Now</button>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="Logo 2 pequeño.jpg" alt="DiversiFi Logo with tagline" class="footer-logo">
+                    <p>The intelligent way to diversify your savings in the crypto world.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#ai-agent">AI Agent</a></li>
+                        <li><a href="#farcaster">Farcaster</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Legal Notice</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 DiversiFi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
