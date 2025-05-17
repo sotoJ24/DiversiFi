@@ -76,9 +76,10 @@ DiversiFI
    ```
 
 2. Access the API endpoints:
-
-   * Simulate AI Recommendation: `POST /simulate-ai-recommendation`
+   
+   * Deposit Funds: `POST /deposit`
    * Diversify Funds: `POST /diversify`
+   * Get Balance: `GET /getBalance`
 
 ---
 
