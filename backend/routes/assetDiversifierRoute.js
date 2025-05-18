@@ -3,16 +3,25 @@ const router = express.Router();
 const { ethers } = require("ethers");
 
 const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545");
-const privateKey = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"; 
+const privateKey = "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d"; 
 const wallet = new ethers.Wallet(privateKey, provider);
 
-const contractAddress = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
+const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const abi = [
     "function deposit() payable",
     "function diversify(address[] tokens, uint256[] percentages)",
     "function getBalance() view returns (uint256)"
 ];
 const contract = new ethers.Contract(contractAddress, abi, wallet);
+
+
+router.get("/connect", async (req, res) => {
+  try {
+    res.status(200).json({ message: "Connect MetaMask from your frontend" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 router.post("/deposit", async (req, res) => {
   try {
