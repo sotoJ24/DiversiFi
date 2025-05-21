@@ -235,5 +235,6 @@ https://claude.ai/public/artifacts/c58165ad-1910-4154-bba8-4cb26c79367b
 ## Future Improvements
 
 * Add a complete frontend for user interaction.
+* Add a wallet integration.
 * Integrate real AI recommendations using an external API.
 * Add a user authentication system.
