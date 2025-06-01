@@ -11,10 +11,10 @@ DiversiFI is a blockchain-powered asset diversification platform designed to hel
 ```
 DiversiFI
 ├── backend
-│   ├── api.js                # Node.js API with AI simulation and contract interaction
-│   └── smart-contracts       # Smart Contracts Solidity (AssetDiversifier.sol)
-│   └── scripts               # Deployment scripts
-│   └── package.json          # Node.js dependencies
+│   ├── api.js                # Node.js API with AI simulation and contract interaction.
+│   └── smart-contracts       # Smart Contracts Solidity (AssetDiversifier.sol).
+│   └── scripts               # Deployment scripts.
+│   └── package.json          # Node.js dependencies.
 │
 └── frontend                  # Frontend for user interaction.
 ```
