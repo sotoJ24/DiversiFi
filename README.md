@@ -16,7 +16,7 @@ DiversiFI
 │   └── scripts               # Deployment scripts
 │   └── package.json          # Node.js dependencies
 │
-└── frontend                  # (Future) Frontend for user interaction
+└── frontend                  # Frontend for user interaction.
 ```
 
 ---
