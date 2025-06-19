@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-DiversiFI is a blockchain-powered asset diversification platform designed to help users efficiently manage their cryptocurrency assets using AI-driven recommendations. The platform enables users to diversify their funds among various cryptocurrencies directly through a smart contract, ensuring a secure and automated process.
+DiversiFI is a blockchain-powered DeFi asset diversification platform designed to help users efficiently manage their cryptocurrency assets using AI-driven recommendations. The platform enables users to diversify their funds among various cryptocurrencies directly through a smart contract, ensuring a secure and automated process.
 
 ---
 
